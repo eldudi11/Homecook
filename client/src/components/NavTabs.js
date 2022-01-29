@@ -26,9 +26,9 @@ export default function NavTabs() {
   return (
     <Box sx={{ width: "100%" }}>
       <Tabs value={value} onChange={handleChange}>
-        <Tab label="Page One" component={Link} to={"/"}></Tab>
-        <Tab label="Page One" component={Link} to={"/login"}></Tab>
-        <Tab label="Page One" component={Link} to={"/myingredients"}></Tab>
+        <Tab label="Discover" component={Link} to={"/"}></Tab>
+        <Tab label="Login" component={Link} to={"/login"}></Tab>
+        <Tab label="Search" component={Link} to={"/myingredients"}></Tab>
       </Tabs>
     </Box>
   );
