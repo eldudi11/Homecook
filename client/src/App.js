@@ -1,30 +1,32 @@
 import logo from "./logo.svg";
 import "./App.css";
 
-import React, { useEffect, useState } from "react";
-import { getApi } from "./api/apiUtils.js";
+import React from "react";
+import { useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Nav from "./components/Nav";
+import NavTabs from "./components/NavTabs";
+import Page1 from "./pages/DiscoverRecipesPage";
+import Page2 from "./pages/LoginPage";
+import Page3 from "./pages/MyIngredientsPage";
 
 function App() {
-  useEffect(() => {
-    getApi("http://localhost:8000/users").then((data) => console.log(data));
-  }, []);
+  // useEffect(() => {
+  //   getApi("http://localhost:8000/users").then((data) => console.log(data));
+  // }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <div>
+          <NavTabs />
+          <Routes>
+            <Route path="/" element={<Page1 />}></Route>
+            <Route path="/login" element={<Page2 />}></Route>
+            <Route path="/myingredients" element={<Page3 />}></Route>
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 }
 
