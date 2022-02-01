@@ -8,6 +8,7 @@ import Page1 from "./pages/DiscoverRecipesPage";
 import Page2 from "./pages/LoginPage";
 import Page3 from "./pages/MyIngredientsPage";
 import { useDispatch } from "react-redux";
+import { loadIngredients } from "./store/actions/ingredientsAction";
 
 function App() {
   // useEffect(() => {
@@ -16,10 +17,7 @@ function App() {
   const dispatcher = useDispatch();
 
   useEffect(() => {
-    dispatcher({
-      type: "LOAD_INGREDIENTS",
-      payload: ["banana", "apple"],
-    });
+    dispatcher(loadIngredients());
   }, []);
 
   return (

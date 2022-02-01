@@ -1,4 +1,4 @@
-const INITIAL_STATE = { ingredientsList: [] };
+const INITIAL_STATE = { ingredientsList: {} };
 
 const ingredientsReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
