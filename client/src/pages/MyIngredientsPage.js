@@ -1,16 +1,14 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import IngredientsList from "../components/IngredientsList";
 import SearchBox from "../components/SearchBox";
 
 const MyIngredientPageComp = () => {
   const selectIng = useSelector((state) => state.ingredients);
-  const [selectedIngredients, setSelectedIngredients] = useState([]);
+  const dispatcher = useDispatch();
+  // const [selectedIngredients, setSelectedIngredients] = useState([]);
   function getChoice(choice) {
-    if (selectedIngredients.indexOf(choice) !== -1) {
-      console.log("value already exist");
-    } else {
-      selectedIngredients.push(choice);
-    }
+    dispatcher({ type: "ADD_SELECTED_INGREDIENT", payload: choice });
   }
   return (
     <div>
@@ -22,9 +20,10 @@ const MyIngredientPageComp = () => {
 
       <SearchBox
         data={selectIng.ingredientsList}
-        selectedData={selectedIngredients}
+        selectedData={selectIng.selectedIngredients}
         callback={{ getChoice: getChoice }}
       />
+      <IngredientsList />
     </div>
   );
 };

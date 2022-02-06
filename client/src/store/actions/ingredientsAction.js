@@ -10,3 +10,9 @@ export function loadIngredients() {
       .catch((error) => console.log("error", error.message));
   };
 }
+
+export function getSelectedIngredients(data) {
+  return function (dispatch) {
+    dispatch({ type: "GET_SELECTED_INGREDIENTS", payload: data });
+  };
+}
