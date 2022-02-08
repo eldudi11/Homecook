@@ -6,6 +6,7 @@ import { ADD_SELECTED_INGREDIENT } from "./../store/actions/ingredientsAction";
 
 const MyIngredientPageComp = () => {
   const selectIng = useSelector((state) => state.ingredients);
+  const selectRecipes = useSelector((state) => state.recipes);
   const dispatcher = useDispatch();
   //const [selectedIngredients, setSelectedIngredients] = useState([]);
   function getChoice(choice) {
@@ -15,7 +16,7 @@ const MyIngredientPageComp = () => {
   return (
     <div>
       <h1>What's in your kitchen?</h1>
-
+      {console.log(selectRecipes.recipesList)}
       {/* {selectIng.ingredientsList.map((ingredient, i) => {
         return <li key={i}>{ingredient.Name}</li>;
       })} */}
