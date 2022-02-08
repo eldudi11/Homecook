@@ -9,7 +9,6 @@ import Page2 from "./pages/LoginPage";
 import Page3 from "./pages/MyIngredientsPage";
 import { useDispatch } from "react-redux";
 import { loadIngredients } from "./store/actions/ingredientsAction";
-import { produce } from "immer";
 
 function App() {
   // useEffect(() => {
