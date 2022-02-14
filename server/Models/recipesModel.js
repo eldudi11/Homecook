@@ -12,6 +12,7 @@ let recipeSchema = new mongoose.Schema({
     },
   ],
   Filter: [String],
+  Image: [String],
   Ingredients: [
     {
       name: String,

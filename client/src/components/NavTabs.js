@@ -29,6 +29,7 @@ export default function NavTabs() {
         <Tab label="Discover" component={Link} to={"/"}></Tab>
         <Tab label="Login" component={Link} to={"/login"}></Tab>
         <Tab label="Search" component={Link} to={"/myingredients"}></Tab>
+        <Tab label="Result" component={Link} to={"/result"}></Tab>
       </Tabs>
     </Box>
   );

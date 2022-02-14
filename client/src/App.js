@@ -7,6 +7,8 @@ import NavTabs from "./components/NavTabs";
 import Page1 from "./pages/DiscoverRecipesPage";
 import Page2 from "./pages/LoginPage";
 import Page3 from "./pages/MyIngredientsPage";
+import Page4 from "./pages/ResultRecipePage";
+
 import { useDispatch } from "react-redux";
 import { loadIngredients } from "./store/actions/ingredientsAction";
 import { loadRecipes } from "./store/actions/recipesAction";
@@ -33,6 +35,7 @@ function App() {
             <Route path="/" element={<Page1 />}></Route>
             <Route path="/login" element={<Page2 />}></Route>
             <Route path="/myingredients" element={<Page3 />}></Route>
+            <Route path="/result" element={<Page4 />}></Route>
           </Routes>
         </div>
       </div>

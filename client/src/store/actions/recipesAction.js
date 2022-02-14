@@ -11,3 +11,13 @@ export function loadRecipes() {
       .catch((error) => console.log("error", error.message));
   };
 }
+
+export function setResultRecipes() {
+  return function (dispatch, getState) {
+    let recipes = getState().recipes.recipesList;
+    let selectedIngredients = getState().ingredients.selectedIngredients;
+    console.log(selectedIngredients);
+    console.log(recipes);
+    // dispatch({ type: PALETTE_TABLE_LOAD, payload: paletteItem });
+  };
+}
