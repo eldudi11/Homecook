@@ -4,11 +4,11 @@ import React from "react";
 import { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NavTabs from "./components/NavTabs";
-import Page1 from "./pages/DiscoverRecipesPage";
-import Page2 from "./pages/LoginPage";
-import Page3 from "./pages/MyIngredientsPage";
-import Page4 from "./pages/ResultRecipePage";
-
+import DiscoverRecipesPage from "./pages/DiscoverRecipesPage";
+import LoginPage from "./pages/LoginPage";
+import MyIngredientsPage from "./pages/MyIngredientsPage";
+import ResultRecipePage from "./pages/ResultRecipePage";
+import RecipePage from "./pages/RecipePage";
 import { useDispatch } from "react-redux";
 import { loadIngredients } from "./store/actions/ingredientsAction";
 import { loadRecipes } from "./store/actions/recipesAction";
@@ -32,10 +32,14 @@ function App() {
         <div>
           <NavTabs />
           <Routes>
-            <Route path="/" element={<Page1 />}></Route>
-            <Route path="/login" element={<Page2 />}></Route>
-            <Route path="/myingredients" element={<Page3 />}></Route>
-            <Route path="/result" element={<Page4 />}></Route>
+            <Route path="/" element={<DiscoverRecipesPage />}></Route>
+            <Route path="/login" element={<LoginPage />}></Route>
+            <Route
+              path="/myingredients"
+              element={<MyIngredientsPage />}
+            ></Route>
+            <Route path="/result" element={<ResultRecipePage />}></Route>
+            <Route path="/recipe/:id" element={<RecipePage />}></Route>
           </Routes>
         </div>
       </div>

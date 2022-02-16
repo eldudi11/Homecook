@@ -32,7 +32,7 @@ export default function IngredientsList() {
   const dispatcher = useDispatch();
 
   function deleteSelectedIngredient(item) {
-    console.log(item);
+    //console.log(item);
     dispatcher({ type: DELETE_SELECTED_INGREDIENT, payload: item });
   }
 
