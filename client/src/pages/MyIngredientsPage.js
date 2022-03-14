@@ -4,6 +4,7 @@ import IngredientsList from "../components/IngredientsList";
 import SearchBox from "../components/SearchBox";
 import { ADD_SELECTED_INGREDIENT } from "./../store/actions/ingredientsAction";
 import { setResultRecipes } from "./../store/actions/recipesAction";
+import Button from "@mui/material/Button";
 
 const MyIngredientPageComp = () => {
   const selectIng = useSelector((state) => state.ingredients);
@@ -32,14 +33,14 @@ const MyIngredientPageComp = () => {
         callback={{ getChoice: getChoice }}
       />
       <IngredientsList />
-
-      <button
+      <Button
+        variant="contained"
         onClick={() => {
           getResults();
         }}
       >
-        get
-      </button>
+        Get Recipes
+      </Button>
     </div>
   );
 };

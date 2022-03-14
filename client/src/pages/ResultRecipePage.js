@@ -11,14 +11,12 @@ const ResultRecipePageComp = () => {
   function getID(i) {
     let id = i;
     console.log(id);
-    navigate("/recipe/123", { replace: true });
+    navigate("/recipe/" + id, { replace: true });
   }
+
   return (
     <div>
-      <li>
-        <Link to="/recipe/s234">hello</Link>
-      </li>
-      <h1>this is my Result Recipe Page page</h1>
+      <h1>My Available Recipes</h1>
       <ResultList callback={{ getID: getID }} />
     </div>
   );

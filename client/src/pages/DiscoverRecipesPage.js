@@ -1,14 +1,24 @@
 import { useState } from "react";
+//import React, { useCallback } from "react";
+import ResultList from "../components/ResultList";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+// import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+// import Page2 from "./pages/LoginPage";
 
-function DiscoverRecipesPageComp() {
-  const [name, setName] = useState("Avi");
-  const [age, setAge] = useState(20);
+const DiscoverRecipesPageComp = () => {
+  let navigate = useNavigate();
+  function getID(i) {
+    let id = i;
+    console.log(id);
+    navigate("/recipe/" + id, { replace: true });
+  }
 
   return (
-    <div className="page1">
-      <h1>this is my Discover Recipe Page page</h1>
+    <div>
+      <h1>Discover Recipes</h1>
+      <ResultList callback={{ getID: getID }} />
     </div>
   );
-}
-
+};
 export default DiscoverRecipesPageComp;
