@@ -52,13 +52,13 @@ export default function NavTabs() {
           icon={<SearchOutlinedIcon />}
           iconPosition="start"
         ></Tab>
-        <Tab
+        {/* <Tab
           label="Result"
           component={Link}
           to={"/result"}
           icon={<FormatListBulletedOutlinedIcon />}
           iconPosition="start"
-        ></Tab>
+        ></Tab> */}
       </Tabs>
     </Box>
   );

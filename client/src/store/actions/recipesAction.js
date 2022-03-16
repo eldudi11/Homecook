@@ -1,5 +1,6 @@
 import { getApi } from "../../api/apiUtils";
 export const LOAD_RECIPES = "LOAD_RECIPES";
+export const LOAD_MY_RECIPES = "LOAD_MY_RECIPES";
 
 export function loadRecipes() {
   return function (dispatch) {
@@ -12,12 +13,16 @@ export function loadRecipes() {
   };
 }
 
-export function setResultRecipes() {
+export function getResultRecipes() {
   return function (dispatch, getState) {
-    let recipes = getState().recipes.recipesList;
-    let selectedIngredients = getState().ingredients.selectedIngredients;
-    console.log(selectedIngredients);
-    console.log(recipes);
-    // dispatch({ type: PALETTE_TABLE_LOAD, payload: paletteItem });
+    return getApi(
+      "http://localhost:8000/recipes",
+      getState().ingredients.selectedIngredients
+    )
+      .then(({ data }) => {
+        console.log(data);
+        dispatch({ type: LOAD_MY_RECIPES, payload: data });
+      })
+      .catch((error) => console.log("error", error.message));
   };
 }
