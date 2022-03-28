@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import IngredientsList from "../components/IngredientsList";
 import SearchBox from "../components/SearchBox";
 import { ADD_SELECTED_INGREDIENT } from "./../store/actions/ingredientsAction";
-import { getResultRecipes } from "./../store/actions/recipesAction";
+import { getResultRecipes, loadMore } from "./../store/actions/recipesAction";
 import Button from "@mui/material/Button";
 
 const MyIngredientPageComp = () => {

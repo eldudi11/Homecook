@@ -4,14 +4,24 @@ const usersBL = require("../BL/usersBL");
 const ingredientsBL = require("./../BL/ingredientsBL");
 const recipesBL = require("../BL/recipesBL");
 
+let releventRecipes = [],
+  recipesToLoad = [];
+const NUM_OF_ELEMENTS = 2;
+let index = 0;
+
 /* GET users listing. */
 router.get("/", async function (req, res, next) {
+  index = 0;
+  recipesToLoad.length = 0;
+  releventRecipes.length = 0;
+  console.log(
+    "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+  );
+  console.log(releventRecipes);
   let data = await recipesBL.getRecipes();
-  userIng = req.query[0];
+  let userIng = req.query[0];
   let matchCount = 0,
     missing;
-  console.log(data[4].Ingredients);
-  releventRecipes = [];
   if (req.query !== {}) {
     data.forEach((recipe) => {
       recipe.Ingredients.forEach((i) => {
@@ -20,20 +30,40 @@ router.get("/", async function (req, res, next) {
         );
         if (found !== undefined) matchCount++;
       });
-      console.log("this recipe have " + matchCount + "matches");
-      missing = recipe.Ingredients.length - matchCount;
-      releventRecipes.push({ missing: missing, recipe: recipe });
-      matchCount = 0;
+      if (matchCount != 0) {
+        missing = recipe.Ingredients.length - matchCount;
+        releventRecipes.push({ missing: missing, recipe: recipe });
+        matchCount = 0;
+      }
     });
   }
+  console.log(releventRecipes);
   //sort by missing ingredients
   releventRecipes.sort((a, b) => {
     return a.missing - b.missing;
   });
 
-  console.log(releventRecipes);
+  if (releventRecipes.length < NUM_OF_ELEMENTS) {
+    recipesToLoad = releventRecipes;
+    console.log("im also here");
+  } else {
+    console.log("im here");
+    recipesToLoad = releventRecipes.slice(index, index + NUM_OF_ELEMENTS);
+    index += NUM_OF_ELEMENTS;
+  }
+  console.log("first");
+  console.log(recipesToLoad);
+  res.send(recipesToLoad);
+});
 
-  res.send(releventRecipes);
+router.get("/loadmore", function (req, res, next) {
+  recipesToLoad = releventRecipes.slice(index, index + NUM_OF_ELEMENTS);
+  index += NUM_OF_ELEMENTS;
+  console.log(
+    "*****************************************************************:"
+  );
+  console.log(recipesToLoad);
+  res.send(recipesToLoad);
 });
 
 module.exports = router;

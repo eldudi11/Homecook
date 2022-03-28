@@ -25,13 +25,12 @@ const ResultRecipePageComp = () => {
       ></img>
       <Typography>Servings: {data.recipe.Servings}</Typography>
       <Typography>Calories: {data.recipe.Calories}</Typography>
-      <p>
-        <h4>Ingredients</h4>
 
-        {data.recipe.Ingredients.map((x) => {
-          return <Typography key={x._id}>{x.name}</Typography>;
-        })}
-      </p>
+      <h4>Ingredients</h4>
+
+      {data.recipe.Ingredients.map((x) => {
+        return <Typography key={x._id}>{x.name}</Typography>;
+      })}
     </div>
   );
 };
