@@ -15,17 +15,12 @@ const recipesReducer = (state = INITIAL_STATE, action) =>
         return draft;
       }
       case LOAD_MY_RECIPES: {
-        console.log("imHere");
         draft.myRecipesList = action.payload;
         break;
       }
 
       case LOAD_MORE: {
-        console.log(action.payload);
-        console.log(draft.myRecipesList);
-        let newarray = draft.myRecipesList.concat(action.payload);
-        console.log(newarray);
-        // draft.myRecipesList = draft.myRecipesList.concat(action.payload);
+        let newarray = draft.myRecipesList.concat(action.payload.recipes);
         draft.myRecipesList = newarray;
         break;
       }

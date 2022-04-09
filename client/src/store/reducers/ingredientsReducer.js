@@ -23,7 +23,7 @@ const ingredientsReducer = (state = INITIAL_STATE, action) =>
 
       case DELETE_SELECTED_INGREDIENT: {
         let index = draft.selectedIngredients.indexOf(action.payload);
-        if (index != -1) {
+        if (index !== -1) {
           draft.selectedIngredients.splice(index, 1);
         }
         return draft;

@@ -20,7 +20,7 @@ const MyIngredientPageComp = () => {
   function getResults() {
     dispatcher(getResultRecipes());
     console.log("hi im here!");
-    navigate("/result", { replace: true });
+    navigate("/result");
   }
 
   return (

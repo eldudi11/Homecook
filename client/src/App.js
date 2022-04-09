@@ -19,12 +19,13 @@ function App() {
   // }, []);
   const dispatcher = useDispatch();
 
-  useEffect(() => {
-    dispatcher(loadIngredients());
-  }, []);
-  useEffect(() => {
-    dispatcher(loadRecipes());
-  }, []);
+  // useEffect(() => {
+  //   dispatcher(loadIngredients());
+  // }, []);
+
+  // useEffect(() => {
+  //   dispatcher(loadRecipes());
+  // }, []);
 
   return (
     <Router>

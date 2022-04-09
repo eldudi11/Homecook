@@ -8,17 +8,21 @@ let releventRecipes = [],
   recipesToLoad = [];
 const NUM_OF_ELEMENTS = 2;
 let index = 0;
+let isAllLoaded = false;
 
 /* GET users listing. */
 router.get("/", async function (req, res, next) {
   index = 0;
   recipesToLoad.length = 0;
   releventRecipes.length = 0;
+  isAllLoaded = false;
   console.log(
-    "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+    "$$$$$$$$$$$$$$$$$$$$$$$$s$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
   );
-  console.log(releventRecipes);
+
   let data = await recipesBL.getRecipes();
+  console.log(req.query[0]);
+  //let userIng = req.query[0];
   let userIng = req.query[0];
   let matchCount = 0,
     missing;
@@ -62,8 +66,13 @@ router.get("/loadmore", function (req, res, next) {
   console.log(
     "*****************************************************************:"
   );
-  console.log(recipesToLoad);
-  res.send(recipesToLoad);
+  if (index >= releventRecipes.length) {
+    isAllLoaded = true;
+  }
+  console.log(releventRecipes.length);
+  console.log(index);
+  console.log(isAllLoaded);
+  res.send({ recipes: recipesToLoad, isAllLoaded: isAllLoaded });
 });
 
 module.exports = router;
