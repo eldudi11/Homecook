@@ -4,11 +4,11 @@ import TextField from "@mui/material/TextField";
 // import Autocomplete from "@mui/material/Autocomplete";
 import debounce from "lodash.debounce";
 import { Grid } from "@mui/material";
-import { getApi } from "../api/apiUtils";
+import { getApi, INGREDIENTS_API } from "../api/apiUtils";
 
 const fetchSearchResults = async (query) => {
   if (query && query.length > 2) {
-    const res = await getApi("http://localhost:8000/ingredients", query);
+    const res = await getApi(INGREDIENTS_API, query);
     console.log(res.data[0].Name);
     return [res.data[0].Name];
   } else {
@@ -25,7 +25,7 @@ const debouncedFetchData = debounce((query, cb) => {
   fetchData(query, cb);
 }, 2000);
 
-export default function SearchBox(props) {
+export default function SearchBox() {
   const [results, setResults] = React.useState([]);
   const [query, setQuery] = React.useState("");
 

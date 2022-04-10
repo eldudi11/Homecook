@@ -13,8 +13,10 @@ const recipesBL = require("../BL/recipesBL");
 
 router.get("/", async function (req, res, next) {
   let data = await ingredientsBL.getIngredients();
-
-  res.send(data);
+  console.log(req.query[0]);
+  let d = await ingredientsBL.getIngredientsByString(req.query[0]);
+  console.log(d);
+  res.send(d);
 });
 
 module.exports = router;

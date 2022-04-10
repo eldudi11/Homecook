@@ -12,6 +12,21 @@ const getIngredients = function () {
   });
 };
 
+const getIngredientsByString = function (str) {
+  return new Promise((resolve, reject) => {
+    Ingredient.find(
+      { Name: { $regex: str, $options: "i" } },
+      function (err, ingredients) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(ingredients);
+        }
+      }
+    );
+  });
+};
+
 const createIngredients = function (obj) {
   return new Promise((resolve, reject) => {
     const newIngredients = new Ingredients({
@@ -28,4 +43,4 @@ const createIngredients = function (obj) {
   });
 };
 
-module.exports = { createIngredients, getIngredients };
+module.exports = { createIngredients, getIngredients, getIngredientsByString };
