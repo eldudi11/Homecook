@@ -6,31 +6,30 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { loadMore } from "./../store/actions/recipesAction";
 
-// import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-// import Page2 from "./pages/LoginPage";
-
 const ResultRecipePageComp = () => {
+  const [update, setUpdate] = useState(1);
   const dispatcher = useDispatch();
+  let isAllLoaded = false;
+
   let navigate = useNavigate();
   function getID(i) {
     let id = i;
-    console.log(id);
     navigate("/recipe/" + id, { replace: true });
   }
 
   function loadMoreData() {
     dispatcher(loadMore());
+    setUpdate(update + 1);
   }
 
-  // const handelRender = useCallback(() => {
-  //   console;
-  // }, []);
+  isAllLoaded = useSelector((state) => state.recipes.isAllLoaded);
 
   return (
     <div>
       <h1>My Available Recipes</h1>
+
       <ResultList callback={{ getID: getID }} />
-      <button onClick={loadMoreData}>Load more</button>
+      {isAllLoaded ? null : <button onClick={loadMoreData}>Load more</button>}
     </div>
   );
 };

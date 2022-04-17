@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 // import Page2 from "./pages/LoginPage";
 
 const DiscoverRecipesPageComp = () => {
+  const [showLoadMoreButton, setshowLoadMoreButton] = useState();
+
   let navigate = useNavigate();
   function getID(i) {
     let id = i;

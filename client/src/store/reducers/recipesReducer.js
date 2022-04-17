@@ -5,7 +5,11 @@ import {
   LOAD_MORE,
 } from "../actions/recipesAction";
 
-const INITIAL_STATE = { recipesList: [], myRecipesList: [], isAllLoaded: [] };
+const INITIAL_STATE = {
+  recipesList: [],
+  myRecipesList: [],
+  isAllLoaded: false,
+};
 
 const recipesReducer = (state = INITIAL_STATE, action) =>
   produce(state, (draft) => {
@@ -22,7 +26,8 @@ const recipesReducer = (state = INITIAL_STATE, action) =>
       case LOAD_MORE: {
         let newarray = draft.myRecipesList.concat(action.payload.recipes);
         draft.myRecipesList = newarray;
-
+        draft.isAllLoaded = action.payload.isAllLoaded;
+        console.log(action.payload.isAllLoaded);
         break;
       }
 
