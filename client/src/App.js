@@ -10,13 +10,14 @@ import MyIngredientsPage from "./pages/MyIngredientsPage";
 import ResultRecipePage from "./pages/ResultRecipePage";
 import RecipePage from "./pages/RecipePage";
 import { useDispatch } from "react-redux";
+import { getApi } from "./api/apiUtils";
 import { loadIngredients } from "./store/actions/ingredientsAction";
 import { loadRecipes } from "./store/actions/recipesAction";
 
 function App() {
-  // useEffect(() => {
-  //   getApi("http://localhost:8000/users").then((data) => console.log(data));
-  // }, []);
+  useEffect(() => {
+    getApi("http://localhost:8000/users").then((data) => console.log(data));
+  }, []);
   const dispatcher = useDispatch();
 
   // useEffect(() => {

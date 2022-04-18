@@ -34,6 +34,7 @@ export default function SearchBox() {
   const [isSelected, setIsSelected] = React.useState(false);
 
   const dispatcher = useDispatch();
+  const selectIng = useSelector((state) => state.ingredients);
 
   React.useEffect(() => {
     debouncedFetchData(query, (res) => {
@@ -49,6 +50,7 @@ export default function SearchBox() {
     <Grid alignItems="center" direction="column" container>
       <Stack spacing={2} sx={{ width: 300 }}>
         <Autocomplete
+          // freeSolo
           options={results.map((option) => {
             return option.Name;
           })}
@@ -57,6 +59,9 @@ export default function SearchBox() {
             setQuery(value);
             isSelected ? setIsSelected(false) : setIsSelected(true);
           }}
+          getOptionDisabled={(option) =>
+            selectIng.selectedIngredients.indexOf(option) !== -1
+          }
           onChange={(e, selectedVal) => handleChange(selectedVal)}
         />
       </Stack>

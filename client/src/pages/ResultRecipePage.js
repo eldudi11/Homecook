@@ -11,6 +11,9 @@ const ResultRecipePageComp = () => {
   const dispatcher = useDispatch();
   let isAllLoaded = false;
 
+  const selectRecipes = useSelector((state) => state.recipes.myRecipesList);
+  console.log("heey");
+  console.log(selectRecipes);
   let navigate = useNavigate();
   function getID(i) {
     let id = i;
@@ -28,7 +31,7 @@ const ResultRecipePageComp = () => {
     <div>
       <h1>My Available Recipes</h1>
 
-      <ResultList callback={{ getID: getID }} />
+      {/* <ResultList data={selectRecipes} callback={{ getID: getID }} /> */}
       {isAllLoaded ? null : <button onClick={loadMoreData}>Load more</button>}
     </div>
   );

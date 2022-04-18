@@ -16,9 +16,6 @@ router.get("/", async function (req, res, next) {
   recipesToLoad.length = 0;
   releventRecipes.length = 0;
   isAllLoaded = false;
-  console.log(
-    "$$$$$$$$$$$$$$$$$$$$$$$$s$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
-  );
 
   let data = await recipesBL.getRecipes();
   console.log(req.query[0]);
@@ -73,6 +70,14 @@ router.get("/loadmore", function (req, res, next) {
   console.log(index);
   console.log(isAllLoaded);
   res.send({ recipes: recipesToLoad, isAllLoaded: isAllLoaded });
+});
+
+router.get("/loadrandom", async function (req, res, next) {
+  let data = await recipesBL.getRandomRecipes();
+  data.forEach((x) => {
+    console.log(x.Name);
+  });
+  res.send(data);
 });
 
 module.exports = router;

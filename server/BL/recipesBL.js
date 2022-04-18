@@ -12,6 +12,18 @@ const getRecipes = function () {
   });
 };
 
+const getRandomRecipes = function () {
+  return new Promise((resolve, reject) => {
+    Recipe.findRandom({}, {}, { limit: 4 }, function (err, recipes) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(recipes);
+      }
+    });
+  });
+};
+
 const createRecipe = function (obj) {
   return new Promise((resolve, reject) => {
     const newRecipe = new Recipe({
@@ -32,4 +44,4 @@ const createRecipe = function (obj) {
   });
 };
 
-module.exports = { createRecipe, getRecipes };
+module.exports = { createRecipe, getRecipes, getRandomRecipes };

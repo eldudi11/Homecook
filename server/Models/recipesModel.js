@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+var random = require("mongoose-simple-random");
 
 let recipeSchema = new mongoose.Schema({
   Name: String,
@@ -21,5 +22,6 @@ let recipeSchema = new mongoose.Schema({
   ],
   Steps: [String],
 });
+recipeSchema.plugin(random);
 
 module.exports = mongoose.model("recipes", recipeSchema);

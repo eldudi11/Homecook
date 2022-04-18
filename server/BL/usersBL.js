@@ -19,7 +19,7 @@ const createUser = function (obj) {
       Username: obj.username,
       Password: obj.password,
       Name: obj.name,
-      QuickIngredients: obj.quickIngredients,
+      Recipes: [],
     });
 
     newUser.save(function (err) {
@@ -32,4 +32,20 @@ const createUser = function (obj) {
   });
 };
 
-module.exports = { createUser, getUsers };
+const pushRecipeToUser = function (id, recipe) {
+  return new Promise((resolve, reject) => {
+    User.findOneAndUpdate(
+      { _id: id },
+      { $push: { Recipes: recipe } },
+      function (err, users) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(users);
+        }
+      }
+    );
+  });
+};
+
+module.exports = { createUser, getUsers, pushRecipeToUser };
