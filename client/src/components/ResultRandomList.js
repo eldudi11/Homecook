@@ -21,7 +21,7 @@ export default function ResultRandomList(props) {
           <ImageListItem key={item._id}>
             <img
               onClick={() => {
-                props.callback.getID(item.r_id);
+                props.callback.getID(item._id);
               }}
               component={Link}
               to={"/"}

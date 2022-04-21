@@ -13,12 +13,12 @@ const getUsers = function () {
   });
 };
 
-const createUser = function (obj) {
+const createUser = function (username, password, name) {
   return new Promise((resolve, reject) => {
     const newUser = new User({
-      Username: obj.username,
-      Password: obj.password,
-      Name: obj.name,
+      Username: username,
+      Password: password,
+      Name: name,
       Recipes: [],
     });
 
@@ -48,4 +48,16 @@ const pushRecipeToUser = function (id, recipe) {
   });
 };
 
-module.exports = { createUser, getUsers, pushRecipeToUser };
+const isExist = function (username) {
+  return new Promise((resolve, reject) => {
+    User.findOne({ Username: username }, function (err, user) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(user);
+      }
+    });
+  });
+};
+
+module.exports = { createUser, getUsers, pushRecipeToUser, isExist };

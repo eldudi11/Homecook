@@ -38,7 +38,6 @@ export default function NavTabs() {
           iconPosition="start"
         ></Tab>
         <Tab
-          disabled={true}
           label="Login"
           component={Link}
           to={"/login"}

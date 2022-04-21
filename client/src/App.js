@@ -9,6 +9,7 @@ import LoginPage from "./pages/LoginPage";
 import MyIngredientsPage from "./pages/MyIngredientsPage";
 import ResultRecipePage from "./pages/ResultRecipePage";
 import RecipePage from "./pages/RecipePage";
+import CreateUserPage from "./pages/CreateUserPage";
 import { useDispatch } from "react-redux";
 import { getApi } from "./api/apiUtils";
 import { loadIngredients } from "./store/actions/ingredientsAction";
@@ -16,7 +17,9 @@ import { loadRecipes } from "./store/actions/recipesAction";
 
 function App() {
   useEffect(() => {
-    getApi("http://localhost:8000/users").then((data) => console.log(data));
+    getApi("http://localhost:8000/users/login").then((data) =>
+      console.log(data)
+    );
   }, []);
   const dispatcher = useDispatch();
 
@@ -36,6 +39,7 @@ function App() {
           <Routes>
             <Route path="/" element={<DiscoverRecipesPage />}></Route>
             <Route path="/login" element={<LoginPage />}></Route>
+            <Route path="/createuser" element={<CreateUserPage />}></Route>
             <Route
               path="/myingredients"
               element={<MyIngredientsPage />}

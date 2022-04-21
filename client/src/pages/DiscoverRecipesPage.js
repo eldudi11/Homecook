@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 //import React, { useCallback } from "react";
-import ResultRandomList from "../components/ResultRandomList";
-import { Link } from "react-router-dom";
+// import ResultRandomList from "../components/ResultRandomList";
+import ResultList from "../components/ResultList";
+// import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 //import { getApi, RECIPES_API, RECIPES_LOAD_MORE_API } from "../../api/apiUtils";
 import { getApi, RECIPES_LOAD_RANDOM_API } from "../api/apiUtils";
@@ -10,13 +11,17 @@ const DiscoverRecipesPageComp = () => {
   const [triggerRefrash, setTriggerRefrash] = useState(0);
 
   useEffect(() => {
-    getApi(RECIPES_LOAD_RANDOM_API).then((data) => setRandomRecipes(data.data));
+    getApi(RECIPES_LOAD_RANDOM_API).then((data) => {
+      let newData = data.data.map((item) => {
+        return { recipe: item, missing: -1 };
+      });
+      setRandomRecipes(newData);
+    });
   }, [triggerRefrash]);
 
   let navigate = useNavigate();
   function getID(i) {
     let id = i;
-    console.log(id);
     navigate("/recipe/" + id, { replace: true });
   }
 
@@ -27,7 +32,7 @@ const DiscoverRecipesPageComp = () => {
   return (
     <div>
       <h1>Discover Recipes</h1>
-      <ResultRandomList data={randomRecipes} callback={{ getID: getID }} />
+      <ResultList data={randomRecipes} callback={{ getID: getID }} />
       <button onClick={handleClick}>Replace recipes</button>
     </div>
   );

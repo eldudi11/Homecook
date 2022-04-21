@@ -31,7 +31,7 @@ const ResultRecipePageComp = () => {
     <div>
       <h1>My Available Recipes</h1>
 
-      {/* <ResultList data={selectRecipes} callback={{ getID: getID }} /> */}
+      <ResultList data={selectRecipes} callback={{ getID: getID }} />
       {isAllLoaded ? null : <button onClick={loadMoreData}>Load more</button>}
     </div>
   );
