@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import React from "react";
 import { useEffect } from "react";
@@ -11,9 +10,11 @@ import ResultRecipePage from "./pages/ResultRecipePage";
 import RecipePage from "./pages/RecipePage";
 import CreateUserPage from "./pages/CreateUserPage";
 import { useDispatch } from "react-redux";
-import { getApi } from "./api/apiUtils";
-import { loadIngredients } from "./store/actions/ingredientsAction";
-import { loadRecipes } from "./store/actions/recipesAction";
+// import { getApi } from "./api/apiUtils";
+// import { loadIngredients } from "./store/actions/ingredientsAction";
+// import { loadRecipes } from "./store/actions/recipesAction";
+import theme from "./theme";
+import { ThemeProvider } from "@mui/material/styles";
 
 function App() {
   useEffect(() => {
@@ -32,24 +33,26 @@ function App() {
   // }, []);
 
   return (
-    <Router>
-      <div className="App">
-        <div>
-          <NavTabs />
-          <Routes>
-            <Route path="/" element={<DiscoverRecipesPage />}></Route>
-            <Route path="/login" element={<LoginPage />}></Route>
-            <Route path="/createuser" element={<CreateUserPage />}></Route>
-            <Route
-              path="/myingredients"
-              element={<MyIngredientsPage />}
-            ></Route>
-            <Route path="/result" element={<ResultRecipePage />}></Route>
-            <Route path="/recipe/" element={<RecipePage />}></Route>
-          </Routes>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <div className="App">
+          <div>
+            <NavTabs />
+            <Routes>
+              <Route path="/" element={<DiscoverRecipesPage />}></Route>
+              <Route path="/login" element={<LoginPage />}></Route>
+              <Route path="/createuser" element={<CreateUserPage />}></Route>
+              <Route
+                path="/myingredients"
+                element={<MyIngredientsPage />}
+              ></Route>
+              <Route path="/result" element={<ResultRecipePage />}></Route>
+              <Route path="/recipe/" element={<RecipePage />}></Route>
+            </Routes>
+          </div>
         </div>
-      </div>
-    </Router>
+      </Router>
+    </ThemeProvider>
   );
 }
 

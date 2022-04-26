@@ -22,19 +22,20 @@ router.get("/", async function (req, res, next) {
 });
 
 router.post("/addfavorite", async function (req, res, next) {
-  // data = await usersBL.getUsers();
+  data = await usersBL.getUsers();
   recipe = req.body.params[0];
-  // usersBL.pushRecipeToUser(data[0]._id, recipe);
-  // console.log(data[0].Username);
+  usersBL.pushRecipeToUser(data[0]._id, recipe);
+  console.log(data[0].Username);
 
   data = await usersBL.getUsers();
 
-  console.log(data[0].Name);
-  console.log("HIIIIIIIIIIIIIIIIII");
-  console.log(recipe.Name);
-  usersBL.removeRecipefromUser(data[0]._id, recipe._id);
-  //usersBL.pushRecipeToUser(data[0]._id, recipe);
+  res.send("hi");
+});
 
+router.post("/removefavorite", async function (req, res, next) {
+  data = await usersBL.getUsers();
+  recipe = req.body.params[0];
+  usersBL.removeRecipefromUser(data[0]._id, recipe._id);
   res.send("hi");
 });
 

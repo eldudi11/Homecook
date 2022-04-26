@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { getApi } from "../api/apiUtils";
-import ActionButton from "./../styles/ActionButton/ActionButton";
+import ActionButton from "../styles/ActionButton";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { DEFINE_CURRNET_USER } from "../store/actions/usersAction";
-import { set } from "lodash";
+// import { set } from "lodash";
 const LoginPageComp = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -61,7 +61,8 @@ const LoginPageComp = () => {
 
       <br />
 
-      <button onClick={handleClick}>login</button>
+      {/* <button onClick={handleClick}>login</button> */}
+      <ActionButton name={"login"} onClick={handleClick}></ActionButton>
       <br />
       {messege}
     </div>

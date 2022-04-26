@@ -20,25 +20,60 @@ export default function ResultList(props) {
   console.log(user);
   const navigate = useNavigate();
 
-  function handleFavoriteClick(recipe) {
-    console.log(recipe);
-    postApi("http://localhost:8000/users/addfavorite", recipe).then((data) => {
-      console.log(data);
-    });
+  function handleFavoriteClick(recipe, isLiked) {
+    if (Object.keys(user).length === 0) {
+      //maybe write a messege to the user before?
+      navigate("/login/", { replace: true });
+    } else if (isLiked == true) {
+      postApi("http://localhost:8000/users/removefavorite", recipe).then(
+        (data) => {
+          console.log(data);
+        }
+      );
+    } else {
+      postApi("http://localhost:8000/users/addfavorite", recipe).then(
+        (data) => {
+          console.log(data);
+        }
+      );
+    }
   }
 
   function isFavorite(recipe) {
     if (Object.keys(user).length === 0) {
-      return <FavoriteBorderIcon />;
-      //  navigate("/login/", { replace: true });
+      return (
+        <IconButton
+          sx={{ color: "rgba(255, 255, 255, 0.54)" }}
+          aria-label={`info about ${recipe.Name}`}
+          onClick={() => handleFavoriteClick(recipe, false)}
+        >
+          <FavoriteBorderIcon />
+        </IconButton>
+      );
     }
 
     let match = user.Recipes.find((x) => x._id === recipe._id);
 
     if (match != undefined) {
-      return <FavoriteIcon />;
+      return (
+        <IconButton
+          sx={{ color: "rgba(255, 255, 255, 0.54)" }}
+          aria-label={`info about ${recipe.Name}`}
+          onClick={() => handleFavoriteClick(recipe, true)}
+        >
+          <FavoriteIcon />
+        </IconButton>
+      );
     } else {
-      return <FavoriteBorderIcon />;
+      return (
+        <IconButton
+          sx={{ color: "rgba(255, 255, 255, 0.54)" }}
+          aria-label={`info about ${recipe.Name}`}
+          onClick={() => handleFavoriteClick(recipe, false)}
+        >
+          <FavoriteBorderIcon />
+        </IconButton>
+      );
     }
   }
 
@@ -67,14 +102,14 @@ export default function ResultList(props) {
               title={item.recipe.Name}
               subtitle={item.recipe.Name}
               actionIcon={
-                <IconButton
-                  sx={{ color: "rgba(255, 255, 255, 0.54)" }}
-                  aria-label={`info about ${item.recipe.Name}`}
-                  onClick={() => handleFavoriteClick(item.recipe)}
-                >
-                  {isFavorite(item.recipe)}
-                  {/* <FavoriteBorderIcon /> */}
-                </IconButton>
+                isFavorite(item.recipe)
+                // <IconButton
+                //   sx={{ color: "rgba(255, 255, 255, 0.54)" }}
+                //   aria-label={`info about ${item.recipe.Name}`}
+                //   onClick={() => handleFavoriteClick(item.recipe)}
+                // >
+                //   {isFavorite(item.recipe)}
+                // </IconButton>
               }
             />
           </ImageListItem>

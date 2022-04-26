@@ -12,7 +12,6 @@ import { Grid } from "@mui/material";
 export default function ResultRandomList(props) {
   //const selectRecipes = useSelector((state) => state.recipes.myRecipesList);
   const selectRecipes = props.data;
-  console.log("THIS IS PROPS:" + selectRecipes);
   return (
     <Grid alignItems="center" direction="column" container>
       <ImageList sx={{ width: 500 }}>
