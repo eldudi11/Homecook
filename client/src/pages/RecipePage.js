@@ -11,10 +11,9 @@ import ImageListItem from "@mui/material/ImageList";
 
 const ResultRecipePageComp = () => {
   const params = useParams();
-  const selectRecipes = useSelector((state) => state.recipes.myRecipesList);
-  let data = selectRecipes.find((data) => data.recipe._id === params.id);
+  const data = useSelector((state) => state.recipes.displayedRecipe);
+  // let data = selectRecipes.find((data) => data.recipe._id === params.id);
   console.log(data);
-
   return (
     <div>
       <h1>{data.recipe.Name}</h1>

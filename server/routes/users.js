@@ -16,19 +16,24 @@ router.get("/", async function (req, res, next) {
   data = await usersBL.getUsers();
   recipes = await recipesBL.getRecipes();
 
-  console.log("THE DATA IS");
-  console.log(data[1]._id);
   // usersBL.pushRecipeToUser(data[1]._id, recipes[4]);
 
   res.send("hi");
 });
 
-router.get("/addfavorite", function (req, res, next) {
-  // usersBL.createUser(req.query[0]);
+router.post("/addfavorite", async function (req, res, next) {
+  // data = await usersBL.getUsers();
+  recipe = req.body.params[0];
+  // usersBL.pushRecipeToUser(data[0]._id, recipe);
+  // console.log(data[0].Username);
 
-  // console.log("THE DATA IS");
-  // console.log(data[1]._id);
-  // usersBL.pushRecipeToUser(data[1]._id, recipes[4]);
+  data = await usersBL.getUsers();
+
+  console.log(data[0].Name);
+  console.log("HIIIIIIIIIIIIIIIIII");
+  console.log(recipe.Name);
+  usersBL.removeRecipefromUser(data[0]._id, recipe._id);
+  //usersBL.pushRecipeToUser(data[0]._id, recipe);
 
   res.send("hi");
 });
@@ -37,8 +42,7 @@ router.get("/login", async function (req, res, next) {
   let username = req.query[0][0];
   let password = req.query[0][1];
   let user = await usersBL.isExist(username);
-  console.log(username + "  " + password);
-  let messege = true;
+  let messege = "OK";
   let isExist = true;
   if (user === null) {
     isExist = false;
@@ -50,14 +54,12 @@ router.get("/login", async function (req, res, next) {
   res.send({ user: user, messege: messege });
 });
 
-router.get("/create", async function (req, res, next) {
-  console.log("IM IS CREATE NOW");
-  let username = req.query[0][0];
-  let password = req.query[0][1];
-  let name = req.query[0][2];
+router.post("/create", async function (req, res, next) {
+  let username = req.body.params[0][0];
+  let password = req.body.params[0][1];
+  let name = req.body.params[0][2];
 
   let user = await usersBL.isExist(username);
-  console.log(username + "  " + password);
   let messege;
 
   if (user !== null) {
@@ -70,7 +72,6 @@ router.get("/create", async function (req, res, next) {
       user = await usersBL.isExist(username);
     }
   }
-  console.log(messege);
   res.send({ user: user, messege: messege });
 });
 

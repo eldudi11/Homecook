@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getApi } from "../api/apiUtils";
+import { postApi } from "../api/apiUtils";
 
 const CreateUserPage = () => {
   const [username, setUsername] = useState("");
@@ -13,7 +13,7 @@ const CreateUserPage = () => {
       messege = "all fields are required to be filled";
       console.log("1 EMPTY");
     } else {
-      getApi("http://localhost:8000/users/create", [
+      postApi("http://localhost:8000/users/create", [
         username,
         password,
         name,

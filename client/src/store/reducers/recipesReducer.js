@@ -3,11 +3,13 @@ import {
   LOAD_RECIPES,
   LOAD_MY_RECIPES,
   LOAD_MORE,
+  ADD_DISPLAYED_RECIPE,
 } from "../actions/recipesAction";
 
 const INITIAL_STATE = {
   recipesList: [],
   myRecipesList: [],
+  displayedRecipe: {},
   isAllLoaded: false,
 };
 
@@ -27,7 +29,11 @@ const recipesReducer = (state = INITIAL_STATE, action) =>
         let newarray = draft.myRecipesList.concat(action.payload.recipes);
         draft.myRecipesList = newarray;
         draft.isAllLoaded = action.payload.isAllLoaded;
-        console.log(action.payload.isAllLoaded);
+        break;
+      }
+
+      case ADD_DISPLAYED_RECIPE: {
+        draft.displayedRecipe = action.payload;
         break;
       }
 

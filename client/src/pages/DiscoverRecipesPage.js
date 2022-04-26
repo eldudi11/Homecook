@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
-//import React, { useCallback } from "react";
-// import ResultRandomList from "../components/ResultRandomList";
 import ResultList from "../components/ResultList";
-// import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-//import { getApi, RECIPES_API, RECIPES_LOAD_MORE_API } from "../../api/apiUtils";
+import { ADD_DISPLAYED_RECIPE } from "../store/actions/recipesAction";
+import { useDispatch, useSelector } from "react-redux";
 import { getApi, RECIPES_LOAD_RANDOM_API } from "../api/apiUtils";
 const DiscoverRecipesPageComp = () => {
   const [randomRecipes, setRandomRecipes] = useState([]);
   const [triggerRefrash, setTriggerRefrash] = useState(0);
+
+  const dispatcher = useDispatch();
+  const navigate = useNavigate();
+
+  const data = useSelector((state) => state.users.currentUser);
+  console.log(data);
 
   useEffect(() => {
     getApi(RECIPES_LOAD_RANDOM_API).then((data) => {
@@ -19,10 +23,9 @@ const DiscoverRecipesPageComp = () => {
     });
   }, [triggerRefrash]);
 
-  let navigate = useNavigate();
-  function getID(i) {
-    let id = i;
-    navigate("/recipe/" + id, { replace: true });
+  function getRecipe(recipe) {
+    dispatcher({ type: ADD_DISPLAYED_RECIPE, payload: recipe });
+    navigate("/recipe/", { replace: true });
   }
 
   function handleClick() {
@@ -32,7 +35,7 @@ const DiscoverRecipesPageComp = () => {
   return (
     <div>
       <h1>Discover Recipes</h1>
-      <ResultList data={randomRecipes} callback={{ getID: getID }} />
+      <ResultList data={randomRecipes} callback={{ getRecipe: getRecipe }} />
       <button onClick={handleClick}>Replace recipes</button>
     </div>
   );

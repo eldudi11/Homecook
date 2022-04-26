@@ -14,3 +14,13 @@ export async function getApi(api, obj = {}) {
     console.log(err);
   }
 }
+
+export async function postApi(api, obj = {}) {
+  try {
+    return await axios.post(api, {
+      params: [obj],
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}

@@ -73,11 +73,9 @@ router.get("/loadmore", function (req, res, next) {
 });
 
 router.get("/loadrandom", async function (req, res, next) {
-  let data = await recipesBL.getRandomRecipes();
-  data.forEach((x) => {
-    console.log(x.Name);
-  });
-  res.send(data);
+  let randomRecipes = await recipesBL.getRandomRecipes();
+
+  res.send(randomRecipes);
 });
 
 module.exports = router;

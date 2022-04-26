@@ -2,6 +2,7 @@ import { getApi, RECIPES_API, RECIPES_LOAD_MORE_API } from "../../api/apiUtils";
 export const LOAD_RECIPES = "LOAD_RECIPES";
 export const LOAD_MY_RECIPES = "LOAD_MY_RECIPES";
 export const LOAD_MORE = "LOAD_MORE";
+export const ADD_DISPLAYED_RECIPE = "ADD_DISPLAYED_RECIPE";
 
 export function loadRecipes() {
   return function (dispatch) {

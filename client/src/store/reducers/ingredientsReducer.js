@@ -17,6 +17,7 @@ const ingredientsReducer = (state = INITIAL_STATE, action) =>
       // case "ADD_SELECTED_INGREDIENT":
       //   return { ...state, selectedIngredients: action.payload };
       case ADD_SELECTED_INGREDIENT: {
+        console.log("IM IN ADD SELECETED INGREDIENTS");
         draft.selectedIngredients.push(action.payload);
         return draft;
       }

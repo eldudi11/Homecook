@@ -48,6 +48,22 @@ const pushRecipeToUser = function (id, recipe) {
   });
 };
 
+const removeRecipefromUser = function (id, recipe) {
+  return new Promise((resolve, reject) => {
+    User.findOneAndUpdate(
+      { _id: id },
+      {
+        $pull: {
+          Recipes: { _id: recipe },
+        },
+      },
+      function (err, data) {
+        console.log(err, data);
+      }
+    );
+  });
+};
+
 const isExist = function (username) {
   return new Promise((resolve, reject) => {
     User.findOne({ Username: username }, function (err, user) {
@@ -60,4 +76,10 @@ const isExist = function (username) {
   });
 };
 
-module.exports = { createUser, getUsers, pushRecipeToUser, isExist };
+module.exports = {
+  createUser,
+  getUsers,
+  pushRecipeToUser,
+  isExist,
+  removeRecipefromUser,
+};

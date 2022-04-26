@@ -17,9 +17,9 @@ import { loadRecipes } from "./store/actions/recipesAction";
 
 function App() {
   useEffect(() => {
-    getApi("http://localhost:8000/users/login").then((data) =>
-      console.log(data)
-    );
+    // getApi("http://localhost:8000/users/login").then((data) =>
+    //   console.log(data)
+    // );
   }, []);
   const dispatcher = useDispatch();
 
@@ -45,7 +45,7 @@ function App() {
               element={<MyIngredientsPage />}
             ></Route>
             <Route path="/result" element={<ResultRecipePage />}></Route>
-            <Route path="/recipe/:id" element={<RecipePage />}></Route>
+            <Route path="/recipe/" element={<RecipePage />}></Route>
           </Routes>
         </div>
       </div>
