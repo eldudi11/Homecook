@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700&display=swap");
+
+.recipeBox {
+  width: 90%;
+  background-color: brown;
+  margin: auto;
+  font-family: "Heebo", sans-serif;
+}
+
+.recipeTitleBox {
+  background-color: darkgoldenrod;
+  display: flex;
+}
+
+.lablesBox {
+  display: flex;
+  margin-left: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.recipeName {
+  font-size: 28px;
+  font-weight: bold;
+}
+.recipeLable {
+  margin-left: 3px;
+  height: 24px;
+  min-width: 60px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: white;
+  color: #44927f;
+  border: 1px solid #44927f;
+  font-weight: 300;
+}
+
+.authorBox {
+  margin-top: auto;
+}

@@ -2,21 +2,25 @@
   display: flex;
   height: 100px;
   align-items: center;
-  justify-content: space-between;
-  background-color: #fcfbfb;
+  width: 100%;
+  top: 0;
+  position: fixed;
+  /* justify-content: space-between; */
+  background-color: #f1f1f1;
+  z-index: 999;
 }
 
-.header-container > div {
-  padding: 50px;
-}
-
+.icon-container,
 .nav-container {
-  display: flex;
+  flex-grow: 1;
+  flex-basis: 0;
 }
 
-.nav-container > div {
-  margin: 10px;
+.icon-container {
+  text-align: end;
+  padding: 30px;
 }
-
-.title {
+.nav-container {
+  text-align: start;
+  padding: 30px;
 }

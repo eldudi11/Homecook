@@ -4,6 +4,9 @@ import ActionButton from "../styles/ActionButton";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { DEFINE_CURRNET_USER } from "../store/actions/usersAction";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+
 // import { set } from "lodash";
 const LoginPageComp = () => {
   const [username, setUsername] = useState("");
@@ -38,30 +41,43 @@ const LoginPageComp = () => {
   return (
     <div>
       <h1>this is login page</h1>
-
       <label>
         Username:
-        <input
+        {/* <input
           type="text"
           name="username"
           value={username || ""}
           onChange={(e) => setUsername(e.target.value)}
-        />
+        /> */}
+        <TextField
+          type="text"
+          name="username"
+          value={username || ""}
+          onChange={(e) => setUsername(e.target.value)}
+        ></TextField>
       </label>
       <br />
       <label>
         Password:
-        <input
+        <TextField
           type="password"
           name="password"
           value={password || ""}
           onChange={(e) => setPassword(e.target.value)}
-        />
+        ></TextField>
+        {/* <input
+          type="password"
+          name="password"
+          value={password || ""}
+          onChange={(e) => setPassword(e.target.value)}
+        /> */}
       </label>
 
       <br />
 
-      {/* <button onClick={handleClick}>login</button> */}
+      <Button variant="contained" onClick={handleClick}>
+        Login
+      </Button>
       <ActionButton name={"login"} onClick={handleClick}></ActionButton>
       <br />
       {messege}

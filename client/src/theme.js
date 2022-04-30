@@ -1,8 +1,14 @@
 import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#44927f",
+    },
+  },
   typography: {
     fontFamily: [
+      "Rubik",
       "-apple-system",
       "BlinkMacSystemFont",
       '"Segoe UI"',
@@ -15,7 +21,6 @@ const theme = createTheme({
       '"Segoe UI Symbol"',
     ].join(","),
   },
-  palette: {},
 });
 
 export default theme;

@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 // import { loadRecipes } from "./store/actions/recipesAction";
 import theme from "./theme";
 import { ThemeProvider } from "@mui/material/styles";
+import { StyledEngineProvider } from "@mui/material/styles";
 
 function App() {
   useEffect(() => {
@@ -34,24 +35,36 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Router>
-        <div className="App">
-          <div>
-            <NavTabs />
-            <Routes>
-              <Route path="/" element={<DiscoverRecipesPage />}></Route>
-              <Route path="/login" element={<LoginPage />}></Route>
-              <Route path="/createuser" element={<CreateUserPage />}></Route>
-              <Route
-                path="/myingredients"
-                element={<MyIngredientsPage />}
-              ></Route>
-              <Route path="/result" element={<ResultRecipePage />}></Route>
-              <Route path="/recipe/" element={<RecipePage />}></Route>
-            </Routes>
+      <StyledEngineProvider injectFirst>
+        <Router>
+          <div className="App">
+            <div>
+              <NavTabs />
+              <div
+                style={{
+                  marginTop: "150px",
+                  // overflowX: "hidden",
+                }}
+              >
+                <Routes>
+                  <Route path="/" element={<DiscoverRecipesPage />}></Route>
+                  <Route path="/login" element={<LoginPage />}></Route>
+                  <Route
+                    path="/createuser"
+                    element={<CreateUserPage />}
+                  ></Route>
+                  <Route
+                    path="/myingredients"
+                    element={<MyIngredientsPage />}
+                  ></Route>
+                  <Route path="/result" element={<ResultRecipePage />}></Route>
+                  <Route path="/recipe/" element={<RecipePage />}></Route>
+                </Routes>
+              </div>
+            </div>
           </div>
-        </div>
-      </Router>
+        </Router>
+      </StyledEngineProvider>
     </ThemeProvider>
   );
 }
