@@ -38,3 +38,47 @@
 .authorBox {
   margin-top: auto;
 }
+
+.recipeContentBox {
+  display: flex;
+}
+
+.recipeContentLeftBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.recipeContentLeftBox > div {
+  margin-bottom: 5px;
+}
+
+.recipeAttributes {
+  display: flex;
+  margin: 5px;
+}
+
+.recipeContentRightBox {
+  display: flex;
+}
+
+.ingredientsBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.ingredientsBox > div {
+  margin-bottom: 10px;
+}
+
+.stepsBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.stepsBox > div {
+  margin-bottom: 10px;
+}
+
+.list {
+  text-align: left;
+}
